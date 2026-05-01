@@ -1,0 +1,712 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Khushi Kirar — AI Engineer Portfolio</title>
+<link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;500;600;700;800&family=DM+Mono:wght@300;400;500&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet" />
+<style>
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+  :root {
+    --bg: #0a0a0f;
+    --bg2: #111118;
+    --bg3: #17171f;
+    --surface: #1e1e28;
+    --surface2: #252530;
+    --accent: #7c6fff;
+    --accent2: #a899ff;
+    --teal: #2dd4bf;
+    --teal2: #99f6e4;
+    --text: #f0eeff;
+    --text2: #b3acd4;
+    --text3: #6b6490;
+    --border: rgba(124,111,255,0.15);
+    --border2: rgba(124,111,255,0.08);
+    --glow: 0 0 40px rgba(124,111,255,0.12);
+  }
+
+  html { scroll-behavior: smooth; }
+
+  body {
+    background: var(--bg);
+    color: var(--text);
+    font-family: 'DM Sans', sans-serif;
+    font-size: 16px;
+    line-height: 1.7;
+    overflow-x: hidden;
+  }
+
+  /* NAV */
+  nav {
+    position: fixed; top: 0; left: 0; right: 0; z-index: 100;
+    display: flex; align-items: center; justify-content: space-between;
+    padding: 1.2rem 3rem;
+    background: rgba(10,10,15,0.85);
+    backdrop-filter: blur(20px);
+    border-bottom: 1px solid var(--border2);
+  }
+  .nav-logo {
+    font-family: 'Syne', sans-serif;
+    font-weight: 800; font-size: 1.1rem;
+    color: var(--accent2); letter-spacing: -0.02em;
+  }
+  .nav-links { display: flex; gap: 2rem; }
+  .nav-links a {
+    font-family: 'DM Mono', monospace; font-size: 0.8rem;
+    color: var(--text3); text-decoration: none; letter-spacing: 0.05em;
+    text-transform: uppercase; transition: color 0.2s;
+  }
+  .nav-links a:hover { color: var(--accent2); }
+
+  /* HERO */
+  .hero {
+    min-height: 100vh;
+    display: flex; flex-direction: column; justify-content: center;
+    padding: 6rem 3rem 4rem;
+    position: relative; overflow: hidden;
+  }
+  .hero::before {
+    content: '';
+    position: absolute; top: -200px; left: -200px;
+    width: 700px; height: 700px; border-radius: 50%;
+    background: radial-gradient(circle, rgba(124,111,255,0.08) 0%, transparent 70%);
+    pointer-events: none;
+  }
+  .hero::after {
+    content: '';
+    position: absolute; bottom: -100px; right: -100px;
+    width: 500px; height: 500px; border-radius: 50%;
+    background: radial-gradient(circle, rgba(45,212,191,0.06) 0%, transparent 70%);
+    pointer-events: none;
+  }
+  .hero-label {
+    font-family: 'DM Mono', monospace; font-size: 0.75rem;
+    color: var(--teal); letter-spacing: 0.15em; text-transform: uppercase;
+    margin-bottom: 1.5rem;
+    display: flex; align-items: center; gap: 0.75rem;
+  }
+  .hero-label::before {
+    content: ''; display: inline-block; width: 2rem; height: 1px;
+    background: var(--teal);
+  }
+  .hero-title {
+    font-family: 'Syne', sans-serif; font-weight: 800;
+    font-size: clamp(3rem, 6vw, 5.5rem);
+    line-height: 1.0; letter-spacing: -0.03em;
+    color: var(--text); margin-bottom: 1.5rem;
+  }
+  .hero-title span { color: var(--accent2); }
+  .hero-desc {
+    max-width: 560px; color: var(--text2); font-size: 1.05rem;
+    font-weight: 300; line-height: 1.8; margin-bottom: 2.5rem;
+  }
+  .hero-tags {
+    display: flex; flex-wrap: wrap; gap: 0.6rem; margin-bottom: 3rem;
+  }
+  .tag {
+    font-family: 'DM Mono', monospace; font-size: 0.7rem;
+    padding: 0.35rem 0.85rem;
+    border: 1px solid var(--border);
+    border-radius: 2rem;
+    color: var(--accent2); letter-spacing: 0.04em;
+    background: rgba(124,111,255,0.05);
+  }
+  .hero-cta {
+    display: flex; gap: 1rem; flex-wrap: wrap;
+  }
+  .btn {
+    font-family: 'DM Mono', monospace; font-size: 0.8rem;
+    padding: 0.85rem 1.8rem; border-radius: 0.5rem;
+    text-decoration: none; letter-spacing: 0.05em;
+    text-transform: uppercase; cursor: pointer;
+    transition: all 0.2s; display: inline-flex; align-items: center; gap: 0.5rem;
+  }
+  .btn-primary {
+    background: var(--accent); color: #fff;
+    border: 1px solid var(--accent);
+  }
+  .btn-primary:hover { background: var(--accent2); border-color: var(--accent2); transform: translateY(-1px); }
+  .btn-secondary {
+    background: transparent; color: var(--text2);
+    border: 1px solid var(--border);
+  }
+  .btn-secondary:hover { border-color: var(--accent); color: var(--accent2); transform: translateY(-1px); }
+
+  .hero-scroll {
+    position: absolute; bottom: 2.5rem; left: 3rem;
+    font-family: 'DM Mono', monospace; font-size: 0.7rem;
+    color: var(--text3); letter-spacing: 0.1em; text-transform: uppercase;
+    display: flex; align-items: center; gap: 0.75rem;
+  }
+  .hero-scroll::after {
+    content: ''; display: block; width: 1rem; height: 1px; background: var(--text3);
+    animation: scrollPulse 2s infinite;
+  }
+  @keyframes scrollPulse { 0%,100% { width: 1rem; opacity: 1; } 50% { width: 2rem; opacity: 0.4; } }
+
+  /* STATS */
+  .stats-bar {
+    background: var(--bg2);
+    border-top: 1px solid var(--border2);
+    border-bottom: 1px solid var(--border2);
+    padding: 1.8rem 3rem;
+    display: flex; gap: 3rem; flex-wrap: wrap;
+  }
+  .stat { flex: 1; min-width: 140px; }
+  .stat-num {
+    font-family: 'Syne', sans-serif; font-weight: 800; font-size: 2rem;
+    color: var(--accent2); line-height: 1;
+  }
+  .stat-label {
+    font-family: 'DM Mono', monospace; font-size: 0.7rem;
+    color: var(--text3); letter-spacing: 0.08em; text-transform: uppercase;
+    margin-top: 0.3rem;
+  }
+
+  /* SECTION */
+  section { padding: 6rem 3rem; }
+  .section-label {
+    font-family: 'DM Mono', monospace; font-size: 0.7rem;
+    color: var(--teal); letter-spacing: 0.15em; text-transform: uppercase;
+    margin-bottom: 1rem; display: flex; align-items: center; gap: 0.75rem;
+  }
+  .section-label::before {
+    content: ''; display: inline-block; width: 1.5rem; height: 1px; background: var(--teal);
+  }
+  .section-title {
+    font-family: 'Syne', sans-serif; font-weight: 700;
+    font-size: clamp(2rem, 3.5vw, 3rem);
+    letter-spacing: -0.025em; line-height: 1.1;
+    margin-bottom: 1rem;
+  }
+  .section-subtitle { color: var(--text2); max-width: 540px; font-weight: 300; margin-bottom: 3.5rem; }
+
+  /* PROJECTS */
+  .projects-grid {
+    display: grid; grid-template-columns: 1fr 1fr; gap: 1.5rem;
+  }
+  .project-card {
+    background: var(--surface);
+    border: 1px solid var(--border2);
+    border-radius: 1.2rem;
+    padding: 2rem; position: relative; overflow: hidden;
+    transition: border-color 0.3s, transform 0.3s;
+    cursor: pointer;
+  }
+  .project-card:hover {
+    border-color: var(--border); transform: translateY(-4px);
+    box-shadow: var(--glow);
+  }
+  .project-card.featured {
+    grid-column: 1 / -1;
+  }
+  .project-card::before {
+    content: '';
+    position: absolute; top: 0; left: 0; right: 0; height: 2px;
+    background: linear-gradient(90deg, var(--accent), var(--teal));
+    opacity: 0; transition: opacity 0.3s;
+  }
+  .project-card:hover::before { opacity: 1; }
+
+  .project-number {
+    font-family: 'DM Mono', monospace; font-size: 0.7rem;
+    color: var(--text3); letter-spacing: 0.08em; margin-bottom: 1.2rem;
+  }
+  .project-title {
+    font-family: 'Syne', sans-serif; font-weight: 700;
+    font-size: 1.4rem; letter-spacing: -0.02em;
+    color: var(--text); margin-bottom: 0.8rem; line-height: 1.2;
+  }
+  .project-desc { color: var(--text2); font-size: 0.9rem; font-weight: 300; margin-bottom: 1.5rem; }
+
+  .pipeline {
+    display: flex; align-items: center; gap: 0.5rem;
+    flex-wrap: wrap; margin: 1.5rem 0;
+  }
+  .pipeline-step {
+    font-family: 'DM Mono', monospace; font-size: 0.65rem;
+    padding: 0.4rem 0.8rem; border-radius: 0.35rem;
+    background: rgba(124,111,255,0.1); color: var(--accent2);
+    border: 1px solid rgba(124,111,255,0.2); letter-spacing: 0.03em;
+    white-space: nowrap;
+  }
+  .pipeline-arrow { color: var(--text3); font-size: 0.8rem; }
+
+  .project-tech { display: flex; flex-wrap: wrap; gap: 0.4rem; }
+  .tech-chip {
+    font-family: 'DM Mono', monospace; font-size: 0.65rem;
+    padding: 0.25rem 0.6rem; border-radius: 0.25rem;
+    background: var(--surface2); color: var(--text3);
+    border: 1px solid var(--border2);
+  }
+  .tech-chip.highlight { background: rgba(45,212,191,0.08); color: var(--teal); border-color: rgba(45,212,191,0.2); }
+
+  .project-result {
+    margin-top: 1.5rem; padding: 1rem 1.2rem;
+    background: rgba(45,212,191,0.04);
+    border: 1px solid rgba(45,212,191,0.1);
+    border-radius: 0.6rem;
+    font-size: 0.85rem; color: var(--text2);
+  }
+  .project-result strong { color: var(--teal); font-weight: 500; }
+
+  /* EXPERIENCE TIMELINE */
+  .timeline { position: relative; }
+  .timeline::before {
+    content: ''; position: absolute; left: 0; top: 0; bottom: 0;
+    width: 1px; background: var(--border);
+  }
+  .timeline-item { padding-left: 2.5rem; padding-bottom: 3rem; position: relative; }
+  .timeline-item::before {
+    content: ''; position: absolute; left: -4px; top: 0.4rem;
+    width: 9px; height: 9px; border-radius: 50%;
+    background: var(--accent); border: 2px solid var(--bg);
+    box-shadow: 0 0 10px rgba(124,111,255,0.5);
+  }
+  .timeline-item:last-child { padding-bottom: 0; }
+  .tl-meta {
+    font-family: 'DM Mono', monospace; font-size: 0.7rem;
+    color: var(--teal); letter-spacing: 0.05em; margin-bottom: 0.4rem;
+  }
+  .tl-company {
+    font-family: 'Syne', sans-serif; font-weight: 700;
+    font-size: 1.2rem; margin-bottom: 0.2rem;
+  }
+  .tl-role { color: var(--text2); font-size: 0.9rem; font-weight: 300; margin-bottom: 1rem; }
+  .tl-points { list-style: none; }
+  .tl-points li {
+    color: var(--text2); font-size: 0.9rem; font-weight: 300;
+    padding: 0.4rem 0; padding-left: 1rem; position: relative;
+  }
+  .tl-points li::before {
+    content: '▸'; position: absolute; left: 0; color: var(--accent); font-size: 0.7rem;
+  }
+
+  /* SKILLS */
+  .skills-grid {
+    display: grid; grid-template-columns: repeat(auto-fill, minmax(220px, 1fr)); gap: 1rem;
+  }
+  .skill-group {
+    background: var(--surface); border: 1px solid var(--border2);
+    border-radius: 1rem; padding: 1.5rem;
+    transition: border-color 0.3s;
+  }
+  .skill-group:hover { border-color: var(--border); }
+  .skill-group-label {
+    font-family: 'DM Mono', monospace; font-size: 0.65rem;
+    color: var(--teal); letter-spacing: 0.1em; text-transform: uppercase;
+    margin-bottom: 1rem;
+  }
+  .skill-list { display: flex; flex-wrap: wrap; gap: 0.4rem; }
+  .skill-pill {
+    font-size: 0.8rem; padding: 0.3rem 0.75rem; border-radius: 2rem;
+    background: var(--bg3); color: var(--text2); border: 1px solid var(--border2);
+  }
+
+  /* AWARDS */
+  .awards-grid {
+    display: grid; grid-template-columns: repeat(3, 1fr); gap: 1rem;
+  }
+  .award-card {
+    background: var(--surface); border: 1px solid var(--border2);
+    border-radius: 1rem; padding: 1.5rem;
+    transition: border-color 0.3s;
+  }
+  .award-card:hover { border-color: var(--border); }
+  .award-icon {
+    font-size: 1.5rem; margin-bottom: 0.8rem;
+    width: 2.5rem; height: 2.5rem;
+    background: rgba(124,111,255,0.1); border-radius: 0.5rem;
+    display: flex; align-items: center; justify-content: center;
+  }
+  .award-title {
+    font-family: 'Syne', sans-serif; font-weight: 600;
+    font-size: 0.95rem; margin-bottom: 0.4rem; line-height: 1.3;
+  }
+  .award-sub { color: var(--text3); font-size: 0.8rem; font-weight: 300; }
+
+  /* CONTACT */
+  .contact-section {
+    background: var(--bg2);
+    border-top: 1px solid var(--border2);
+    text-align: center;
+    padding: 6rem 3rem;
+  }
+  .contact-section .section-label { justify-content: center; }
+  .contact-section .section-label::before { display: none; }
+  .contact-email {
+    font-family: 'Syne', sans-serif; font-weight: 800;
+    font-size: clamp(1.5rem, 3vw, 2.5rem);
+    color: var(--accent2); letter-spacing: -0.02em;
+    text-decoration: none; display: inline-block;
+    margin: 1rem 0 2rem;
+    transition: color 0.2s;
+  }
+  .contact-email:hover { color: var(--teal); }
+  .social-links { display: flex; gap: 1rem; justify-content: center; }
+
+  /* FOOTER */
+  footer {
+    padding: 1.5rem 3rem;
+    border-top: 1px solid var(--border2);
+    display: flex; align-items: center; justify-content: space-between;
+    font-family: 'DM Mono', monospace; font-size: 0.7rem; color: var(--text3);
+  }
+
+  /* ANIMATIONS */
+  @keyframes fadeUp {
+    from { opacity: 0; transform: translateY(24px); }
+    to { opacity: 1; transform: translateY(0); }
+  }
+  .hero-label { animation: fadeUp 0.5s ease 0.1s both; }
+  .hero-title { animation: fadeUp 0.5s ease 0.2s both; }
+  .hero-desc { animation: fadeUp 0.5s ease 0.3s both; }
+  .hero-tags { animation: fadeUp 0.5s ease 0.4s both; }
+  .hero-cta { animation: fadeUp 0.5s ease 0.5s both; }
+
+  @media (max-width: 768px) {
+    nav { padding: 1rem 1.5rem; }
+    .nav-links { display: none; }
+    .hero, section { padding-left: 1.5rem; padding-right: 1.5rem; }
+    .projects-grid { grid-template-columns: 1fr; }
+    .project-card.featured { grid-column: 1; }
+    .awards-grid { grid-template-columns: 1fr; }
+    .stats-bar { padding: 1.5rem; }
+    .hero-title { font-size: 2.5rem; }
+  }
+</style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav>
+  <div class="nav-logo">KK.portfolio</div>
+  <div class="nav-links">
+    <a href="#projects">Projects</a>
+    <a href="#experience">Experience</a>
+    <a href="#skills">Skills</a>
+    <a href="#contact">Contact</a>
+  </div>
+</nav>
+
+<!-- HERO -->
+<section class="hero">
+  <div class="hero-label">AI & ML Engineer · IIT BHU · Cisco</div>
+  <h1 class="hero-title">Khushi<br><span>Kirar.</span></h1>
+  <p class="hero-desc">
+    I build intelligent systems at the intersection of computer vision, NLP, and distributed engineering —
+    from RAG-based AI assistants to end-to-end automated bug detection pipelines.
+  </p>
+  <div class="hero-tags">
+    <span class="tag">Computer Vision</span>
+    <span class="tag">LLMs & RAG</span>
+    <span class="tag">MLOps</span>
+    <span class="tag">Distributed Systems</span>
+    <span class="tag">Deep Learning</span>
+    <span class="tag">MCP Servers</span>
+  </div>
+  <div class="hero-cta">
+    <a href="#projects" class="btn btn-primary">View Projects ↓</a>
+    <a href="mailto:khushi.kirar03@gmail.com" class="btn btn-secondary">Get in Touch</a>
+  </div>
+  <div class="hero-scroll">Scroll to explore</div>
+</section>
+
+<!-- STATS -->
+<div class="stats-bar">
+  <div class="stat">
+    <div class="stat-num">8.87</div>
+    <div class="stat-label">GPA · IIT BHU</div>
+  </div>
+  <div class="stat">
+    <div class="stat-num">#7</div>
+    <div class="stat-label">Global Rank · Shell 2022</div>
+  </div>
+  <div class="stat">
+    <div class="stat-num">3rd</div>
+    <div class="stat-label">Shadowfax / 2000+ teams</div>
+  </div>
+  <div class="stat">
+    <div class="stat-num">15K+</div>
+    <div class="stat-label">CLI Dependencies Modeled</div>
+  </div>
+  <div class="stat">
+    <div class="stat-num">3</div>
+    <div class="stat-label">Countries · Internships</div>
+  </div>
+</div>
+
+<!-- PROJECTS -->
+<section id="projects">
+  <div class="section-label">Featured work</div>
+  <h2 class="section-title">Projects &amp; Systems</h2>
+  <p class="section-subtitle">Production-grade ML systems with real business impact, from automated bug detection to forecasting platforms.</p>
+
+  <div class="projects-grid">
+
+    <!-- FEATURED: AI Bug Pipeline -->
+    <div class="project-card featured">
+      <div class="project-number">01 · Featured project</div>
+      <div class="project-title">Autonomous Bug Detection &amp; Fix Pipeline</div>
+      <p class="project-desc">
+        A fully automated, end-to-end AI pipeline that analyzes historical bug data to proactively surface high-risk code hotspots,
+        generate root cause analysis, produce targeted fixes, write test cases, and file structured bug reports — all without human
+        intervention. Powered by OpenAI's Codex (GPT-4.5 family) orchestrated via Python scripts with multi-stage reasoning.
+      </p>
+      <div class="pipeline">
+        <span class="pipeline-step">Hotspot Detection</span>
+        <span class="pipeline-arrow">→</span>
+        <span class="pipeline-step">RCA Generation</span>
+        <span class="pipeline-arrow">→</span>
+        <span class="pipeline-step">Fix Synthesis</span>
+        <span class="pipeline-arrow">→</span>
+        <span class="pipeline-step">Test Case Writer</span>
+        <span class="pipeline-arrow">→</span>
+        <span class="pipeline-step">Bug Report Filing</span>
+      </div>
+      <div class="project-tech">
+        <span class="tech-chip highlight">OpenAI Codex / GPT-4.5</span>
+        <span class="tech-chip highlight">Python Orchestration</span>
+        <span class="tech-chip">Historical Bug Data Analysis</span>
+        <span class="tech-chip">AST Parsing</span>
+        <span class="tech-chip">Test Generation</span>
+        <span class="tech-chip">Automated Reporting</span>
+      </div>
+      <div class="project-result">
+        <strong>Impact:</strong> Reduced time-to-detect latent bugs by surfacing risk areas proactively;
+        automated the full triage-to-testcase loop that previously required manual engineering effort.
+      </div>
+    </div>
+
+    <!-- XEVA -->
+    <div class="project-card">
+      <div class="project-number">02 · At Cisco</div>
+      <div class="project-title">XEVA — RAG-Based AI Dev Assistant</div>
+      <p class="project-desc">
+        Production-grade AI assistant integrating LLMs, vector embeddings, and MCP tool servers.
+        Built a companion VSCode extension for real-time debugging and contextual CLI knowledge retrieval.
+      </p>
+      <div class="project-tech">
+        <span class="tech-chip highlight">RAG</span>
+        <span class="tech-chip highlight">MCP Servers</span>
+        <span class="tech-chip">Vector Embeddings</span>
+        <span class="tech-chip">VSCode Extension</span>
+        <span class="tech-chip">LLMs</span>
+      </div>
+    </div>
+
+    <!-- ADAPT -->
+    <div class="project-card">
+      <div class="project-number">03 · At Cisco</div>
+      <div class="project-title">ADAPT — CLI Validation at Scale</div>
+      <p class="project-desc">
+        Automated validation of millions of IOS CLI commands by modeling 15K+ dependencies using a Graph Database.
+        Designed scalable distributed workflows with Redis and RabbitMQ.
+      </p>
+      <div class="project-tech">
+        <span class="tech-chip highlight">Graph Database</span>
+        <span class="tech-chip highlight">Redis &amp; RabbitMQ</span>
+        <span class="tech-chip">Distributed Systems</span>
+        <span class="tech-chip">IOS CLI</span>
+      </div>
+    </div>
+
+    <!-- Fidelity -->
+    <div class="project-card">
+      <div class="project-number">04 · At Fidelity Investments</div>
+      <div class="project-title">Call Demand Forecasting Platform</div>
+      <p class="project-desc">
+        Time series forecasting system using Facebook Prophet and Streamlit for call demand at Fidelity.
+        Integrated real-time anomaly detection with the Darts library and deployed via FastAPI + SageMaker.
+      </p>
+      <div class="project-tech">
+        <span class="tech-chip highlight">Facebook Prophet</span>
+        <span class="tech-chip highlight">AWS SageMaker</span>
+        <span class="tech-chip">Darts</span>
+        <span class="tech-chip">FastAPI</span>
+        <span class="tech-chip">Streamlit</span>
+      </div>
+    </div>
+
+    <!-- Surveillance -->
+    <div class="project-card">
+      <div class="project-number">05 · Research Project</div>
+      <div class="project-title">Age &amp; Gender Prediction from Surveillance</div>
+      <p class="project-desc">
+        Multi-stage CV pipeline: YOLOv3 for detection, DeepSORT for tracking, ESRGAN for super-resolution,
+        U-Net for gait extraction, and a pre-trained CNN for demographic prediction on low-quality footage.
+      </p>
+      <div class="project-tech">
+        <span class="tech-chip highlight">YOLOv3</span>
+        <span class="tech-chip highlight">ESRGAN</span>
+        <span class="tech-chip">DeepSORT</span>
+        <span class="tech-chip">U-Net</span>
+        <span class="tech-chip">OpenCV</span>
+      </div>
+    </div>
+
+    <!-- Shadowfax -->
+    <div class="project-card">
+      <div class="project-number">06 · Competition · Cascade Cup '22</div>
+      <div class="project-title">Delivery Cancellation Prediction</div>
+      <p class="project-desc">
+        Handled a 470K-row, 3%-positive-class dataset from Shadowfax. Used class-weighting and model
+        stacking (RF + XGBoost + DT + AdaBoost + Gaussian NB) for robust imbalanced classification.
+      </p>
+      <div class="project-tech">
+        <span class="tech-chip highlight">XGBoost</span>
+        <span class="tech-chip">Random Forest</span>
+        <span class="tech-chip">Model Stacking</span>
+        <span class="tech-chip">AUC-ROC 0.83</span>
+      </div>
+      <div class="project-result">
+        <strong>3rd place</strong> out of 2,000+ participants globally.
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<!-- EXPERIENCE -->
+<section id="experience" style="background: var(--bg2);">
+  <div class="section-label">Career</div>
+  <h2 class="section-title">Experience</h2>
+  <p class="section-subtitle">From top research labs to product engineering at scale.</p>
+
+  <div class="timeline">
+    <div class="timeline-item">
+      <div class="tl-meta">Aug 2025 – Present · Bengaluru, India</div>
+      <div class="tl-company">Cisco</div>
+      <div class="tl-role">Software Engineer — AI &amp; Infrastructure</div>
+      <ul class="tl-points">
+        <li>Built XEVA: production RAG assistant with LLMs, vector embeddings, and MCP tool servers + VSCode extension</li>
+        <li>Contributed to ADAPT: automated validation of millions of IOS CLI commands using Graph Database &amp; distributed queues</li>
+      </ul>
+    </div>
+    <div class="timeline-item">
+      <div class="tl-meta">May 2024 – July 2024 · Bengaluru, India</div>
+      <div class="tl-company">Fidelity Investments</div>
+      <div class="tl-role">Data Science Intern</div>
+      <ul class="tl-points">
+        <li>Built time series forecasting + anomaly detection platform for call demand capacity planning</li>
+        <li>Deployed via FastAPI and AWS SageMaker; validated robustness with streaming real-time data</li>
+      </ul>
+    </div>
+    <div class="timeline-item">
+      <div class="tl-meta">May 2023 – July 2023 · Munich, Germany</div>
+      <div class="tl-company">Technical University of Munich (TUM)</div>
+      <div class="tl-role">ML Research Intern · DAAD WISE Fellow</div>
+      <ul class="tl-points">
+        <li>Researched Interpretable ML via spectral clustering on high-dimensional structured datasets</li>
+        <li>Implemented clustering using Degree Matrix, Adjacency Matrix, and Graph Laplacian with stability analysis</li>
+      </ul>
+    </div>
+  </div>
+</section>
+
+<!-- SKILLS -->
+<section id="skills">
+  <div class="section-label">Toolkit</div>
+  <h2 class="section-title">Skills &amp; Technologies</h2>
+  <p class="section-subtitle">A broad stack from low-level computer vision to large language model infrastructure.</p>
+
+  <div class="skills-grid">
+    <div class="skill-group">
+      <div class="skill-group-label">Languages</div>
+      <div class="skill-list">
+        <span class="skill-pill">Python</span>
+        <span class="skill-pill">C++</span>
+        <span class="skill-pill">SQL</span>
+      </div>
+    </div>
+    <div class="skill-group">
+      <div class="skill-group-label">AI / ML Frameworks</div>
+      <div class="skill-list">
+        <span class="skill-pill">TensorFlow</span>
+        <span class="skill-pill">Keras</span>
+        <span class="skill-pill">Scikit-learn</span>
+        <span class="skill-pill">OpenCV</span>
+      </div>
+    </div>
+    <div class="skill-group">
+      <div class="skill-group-label">LLMs &amp; RAG</div>
+      <div class="skill-list">
+        <span class="skill-pill">OpenAI API</span>
+        <span class="skill-pill">RAG Pipelines</span>
+        <span class="skill-pill">MCP Servers</span>
+        <span class="skill-pill">Vector DBs</span>
+      </div>
+    </div>
+    <div class="skill-group">
+      <div class="skill-group-label">Cloud &amp; Infra</div>
+      <div class="skill-list">
+        <span class="skill-pill">AWS SageMaker</span>
+        <span class="skill-pill">FastAPI</span>
+        <span class="skill-pill">Redis</span>
+        <span class="skill-pill">RabbitMQ</span>
+      </div>
+    </div>
+    <div class="skill-group">
+      <div class="skill-group-label">Data Science</div>
+      <div class="skill-list">
+        <span class="skill-pill">Prophet</span>
+        <span class="skill-pill">XGBoost</span>
+        <span class="skill-pill">Darts</span>
+        <span class="skill-pill">Streamlit</span>
+      </div>
+    </div>
+    <div class="skill-group">
+      <div class="skill-group-label">Focus Areas</div>
+      <div class="skill-list">
+        <span class="skill-pill">Computer Vision</span>
+        <span class="skill-pill">NLP</span>
+        <span class="skill-pill">Time Series</span>
+        <span class="skill-pill">Graph ML</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- AWARDS -->
+<section style="background: var(--bg2); padding-top: 0; padding-bottom: 6rem;">
+  <div class="section-label">Recognition</div>
+  <h2 class="section-title">Awards &amp; Honours</h2>
+  <br>
+  <div class="awards-grid">
+    <div class="award-card">
+      <div class="award-icon">🏆</div>
+      <div class="award-title">DAAD WISE 2023 Fellow</div>
+      <div class="award-sub">Research internship at Technical University of Munich, Germany</div>
+    </div>
+    <div class="award-card">
+      <div class="award-icon">🥇</div>
+      <div class="award-title">Global Rank #7</div>
+      <div class="award-sub">Autonomous Programming Challenge · Shell Eco-Marathon 2022</div>
+    </div>
+    <div class="award-card">
+      <div class="award-icon">🥉</div>
+      <div class="award-title">3rd Place Globally</div>
+      <div class="award-sub">Shell Eco-Marathon Global League 2022 · 130+ teams / 35 countries</div>
+    </div>
+  </div>
+</section>
+
+<!-- CONTACT -->
+<div class="contact-section" id="contact">
+  <div class="section-label">Let's connect</div>
+  <h2 class="section-title" style="font-size: 2rem;">Open to opportunities</h2>
+  <a href="mailto:khushi.kirar03@gmail.com" class="contact-email">khushi.kirar03@gmail.com</a>
+  <div class="social-links">
+    <a href="https://linkedin.com/in/khushi-kirar-552701217/" class="btn btn-secondary" target="_blank">LinkedIn ↗</a>
+    <a href="https://github.com/khush563" class="btn btn-secondary" target="_blank">GitHub ↗</a>
+  </div>
+</div>
+
+<footer>
+  <span>© 2026 Khushi Kirar</span>
+  <span>IIT (BHU) Varanasi · B.Tech + M.Tech · 2025</span>
+</footer>
+
+</body>
+</html>
